@@ -1,0 +1,22 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Aplicación web que permite conocer el clima del día actual y de los próximos tres días",
+  "main": "index.js",
+  "scripts": {
+    "start": "live-server --open=public --entry-file=index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masmelacarol/weather-app.git"
+  },
+  "keywords": [
+    "Weather",
+    "Vanilla JS"
+  ],
+  "author": "Carol Masmela <carolstefannym@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}

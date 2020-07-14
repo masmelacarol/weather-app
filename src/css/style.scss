@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
 
 :root {
+  --bg-main: #e1e8f0;
   --bg-btn: #8571ee;
   --bg-btn-secondary: #31338a;
-  --font-family: 'Quicksand', sans-serif;
+  --font-family: sans-serif;
+  --font-family-main: 'Quicksand', sans-serif;
 }
 
 * {
@@ -12,6 +14,139 @@
   margin: 0;
 }
 
-body {
-  font-family: var(--font-family);
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+}
+
+.border {
+  border-radius: 20px;
+}
+
+.hero {
+  font-family: var(--font-family-main);
+  padding: 20px;
+  background-color: var(--bg-main);
+  height: 100vh;
+
+  &-logo {
+    @extend .flex;
+    justify-content: flex-end;
+    margin: auto;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    width: 50px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  &-container {
+    padding: 40px;
+    margin: 20px 50px;
+    background-color: #fff;
+    @extend .border;
+
+    .banner {
+      margin: 10px auto;
+      position: relative;
+      height: 250px;
+      background-color: #fff;
+
+      &-container {
+        @extend .border;
+        background-image: url('../src/images/cover-bogota.png');
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        opacity: 0.3;
+      }
+
+      &-head {
+        @extend .border;
+        padding: 4em;
+        background-color: rgba(0, 0, 0, 0.8);
+        height: 100%;
+
+        h2 {
+          @extend .flex;
+          color: var(--bg-btn);
+          position: relative;
+          font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
+          font-size: 20px;
+          z-index: 2;
+          font-weight: 600;
+
+          i {
+            color: var(--bg-btn);
+            margin-right: 5px;
+          }
+        }
+      }
+      &-description {
+        position: absolute;
+        top: 30%;
+        left: -40px;
+        .weather,
+        .temperature {
+          @extend .flex;
+          border-radius: 0 10px 10px 0;
+          justify-content: center;
+          width: 80px;
+          height: 60px;
+          color: #fff;
+
+          i {
+            font-size: 20px;
+          }
+          small {
+            vertical-align: super;
+            font-size: 12px;
+          }
+        }
+        .weather {
+          position: absolute;
+          background-color: var(--bg-btn);
+          @extend .flex;
+          flex-direction: column;
+          flex-grow: 1;
+          z-index: 4;
+        }
+        .temperature {
+          background-color: var(--bg-btn-secondary);
+          position: absolute;
+          top: 50px;
+          z-index: 1;
+          p {
+            font-size: 25px;
+            small {
+              margin-left: -5px;
+              margin-top: 3px;
+            }
+          }
+        }
+      }
+    }
+
+    .main {
+      @extend .grid;
+      grid-template-columns: 3fr 1fr;
+      margin: 20px 0;
+      &-information {
+        @extend .grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    }
+  }
 }

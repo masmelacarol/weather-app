@@ -14,6 +14,11 @@
   margin: 0;
 }
 
+img {
+  width: 100%;
+  height: 100%;
+}
+
 .flex {
   display: flex;
   align-items: center;
@@ -27,11 +32,26 @@
   border-radius: 20px;
 }
 
+i {
+  font-size: 30px;
+}
+
+.temperature {
+  p {
+    font-size: 25px;
+
+    small {
+      margin-left: -5px;
+      margin-top: 3px;
+    }
+  }
+}
+
 .hero {
   font-family: var(--font-family-main);
   padding: 20px;
   background-color: var(--bg-main);
-  height: 100vh;
+  height: 100%;
 
   &-logo {
     @extend .flex;
@@ -91,13 +111,16 @@
           i {
             color: var(--bg-btn);
             margin-right: 5px;
+            font-size: 20px;
           }
         }
       }
+
       &-description {
         position: absolute;
         top: 30%;
         left: -40px;
+
         .weather,
         .temperature {
           @extend .flex;
@@ -110,11 +133,20 @@
           i {
             font-size: 20px;
           }
+
           small {
             vertical-align: super;
             font-size: 12px;
           }
         }
+
+        .temperature {
+          background-color: var(--bg-btn-secondary);
+          position: absolute;
+          top: 50px;
+          z-index: 1;
+        }
+
         .weather {
           position: absolute;
           background-color: var(--bg-btn);
@@ -123,29 +155,181 @@
           flex-grow: 1;
           z-index: 4;
         }
-        .temperature {
-          background-color: var(--bg-btn-secondary);
-          position: absolute;
-          top: 50px;
-          z-index: 1;
-          p {
-            font-size: 25px;
-            small {
-              margin-left: -5px;
-              margin-top: 3px;
-            }
-          }
-        }
+
       }
     }
 
     .main {
       @extend .grid;
       grid-template-columns: 3fr 1fr;
-      margin: 20px 0;
+      margin: 40px 0;
+
       &-information {
         @extend .grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+
+      h2 {
+        font-weight: 400;
+
+        span {
+          font-weight: 600;
+        }
+      }
+
+      &-forecast,
+      &-visit,
+      &-reviews {
+        h2 {
+          margin-bottom: 30px;
+        }
+      }
+
+      &-forecast {
+        &_content {
+          margin: 10px;
+
+          .card {
+            @extend .grid;
+            @extend .border;
+            grid-template-columns: 3fr 2fr;
+            border: 1px solid #d4d4d4;
+            box-shadow: 5px 4px 8px #8a8a8a;
+
+            &-day {
+              padding: 10px;
+              @extend .flex;
+              justify-content: space-evenly;
+
+              h6 {
+                font-size: 15px;
+              }
+
+            }
+
+            &-temperature {
+              @extend .border;
+              @extend .flex;
+              background-color: var(--bg-btn);
+              width: 95px;
+              height: 80px;
+              justify-self: end;
+              justify-content: center;
+              margin-right: -1px;
+              margin-bottom: -1px;
+
+              p {
+                color: #fff;
+                font-size: 15px;
+              }
+            }
+          }
+        }
+      }
+
+      &-visit {
+        width: 200px;
+        height: 220px;
+
+        &_container {
+          @extend .border;
+          background-image: url('../src/images/cover-visit.png');
+          background-position: center center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          height: 100%;
+          width: 100%;
+          padding: 20px;
+          margin: 10px;
+
+          h4 {
+            font-size: 15px;
+            color: #fff;
+
+            i {
+              font-size: 20px;
+            }
+          }
+        }
+      }
+
+      &-reviews {
+        .header-review {
+          @extend .flex;
+          justify-content: space-around;
+
+          &_avatars {
+
+            figure {
+              display: inline-block;
+              width: 28px;
+
+              img {
+                border-radius: 10px;
+              }
+
+              .more {
+                background-color: var(--bg-main);
+                padding: 8px;
+
+              }
+            }
+
+          }
+        }
+      }
+
+      &-card {
+        .card {
+          &-container {
+            @extend .border;
+            width: 280px;
+            box-shadow: 5px 4px 8px #8a8a8a;
+            text-align: center;
+          }
+
+          &-head,
+          &-content {
+            @extend .grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            align-items: center;
+            justify-items: center;
+            justify-self: center;
+
+            p:not(.temp) {
+              font-size: 12px;
+
+              small {
+                font-size: 10px;
+              }
+
+              .country {
+                display: block;
+              }
+            }
+
+          }
+
+          &-head {
+            figure {
+              @extend .flex;
+              @extend .border;
+              justify-content: center;
+              background-color: var(--bg-main);
+              width: 95px;
+              height: 80px;
+              color: #7d67f0;
+
+              i {
+                font-size: 30px;
+              }
+            }
+          }
+
+          &-content {
+            padding: 10px;
+          }
+        }
       }
     }
   }

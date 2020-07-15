@@ -5,6 +5,9 @@ class WeatherData {
     this.temperature;
     this.weather;
     this.forecast;
+    this.fetchData = this.fetchData.bind(this);
+    this.getLocation = this.getLocation.bind(this);
+    this.showWeatherGeneric = this.showWeatherGeneric.bind(this);
   }
 
   getTemperature(temperature) {
@@ -44,7 +47,6 @@ class WeatherData {
     let dayOne = dates.findIndex((item) => item.getDate() == today + 1 && item.getHours() == 6);
     let dayTwo = dates.findIndex((item) => item.getDate() == today + 2 && item.getHours() == 6);
     let dayThree = dates.findIndex((item) => item.getDate() == today + 3 && item.getHours() == 6);
-    console.log("WeatherData -> getDate -> dayThree", dayThree)
     return [forestList[dayOne], forestList[dayTwo], forestList[dayThree]];
   }
 
@@ -122,7 +124,6 @@ class WeatherData {
    */
 
   getWeatherData(data) {
-    console.log("WeatherData -> getWeatherData -> data", data)
     let main = this.getTemperature(data);
     let weather = {
       name: data.name,
@@ -204,7 +205,7 @@ class WeatherData {
    * @memberof WeatherData
    */
 
-  showWeatherSingapur(data) {
+  showWeatherGeneric(data) {
     const mainCard = document.querySelector('.main-card');
     const weather = this.getWeatherData(data);
     mainCard.innerHTML += `<div class="card-container">
@@ -282,9 +283,35 @@ class WeatherData {
     this.showWeatherBogota(weatherBogota);
     this.showCardForecastBogota(forecast);
     this.showWeatherParis(weatherParis);
-    this.showWeatherSingapur(weatherSingapur);
+    this.showWeatherGeneric(weatherSingapur);
+  }
+
+  /**
+   * Función encargada de llamar a la función @fetchData y enviar el datos a las respetivas
+   * funciones que muestran los datos en el HTML dependiendo la ciudad que se digite
+   * @param {*} city
+   * @memberof WeatherData
+   */
+  async getLocation(city) {
+    try {
+      let weather = await this.fetchData(city, 'weather', API_KEY);
+      this.showWeatherGeneric(weather);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+
+  async addLocation(e) {
+    console.log("WeatherData -> addLocation -> e", e)
+    let target = e.target.classList.value;
+    let city = prompt('What country do you want to consult?');
+    let cityFormatted = city.charAt(0).toUpperCase() + city.slice(1);
+    this.getLocation(cityFormatted);
   }
 }
 
+const btnAdd = document.querySelector('button.add-location');
 const weather = new WeatherData();
 weather.getData();
+btnAdd.addEventListener('click', (e) => weather.addLocation(e));

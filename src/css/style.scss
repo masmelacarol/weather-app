@@ -212,9 +212,6 @@ i {
         @include grid(200px);
         justify-items: center;
 
-        @media screen and (max-width: 600px) {
-          grid-template-rows: repeat(3, minmax(200px, 1fr));
-        }
       }
 
       h2 {
@@ -335,11 +332,91 @@ i {
             }
           }
         }
+
+        .review-content {
+          @include grid(1fr);
+          grid-template-rows: 1fr 2fr;
+
+          &:first-of-type:not(h4) {
+            margin-top: 20px;
+          }
+
+          .container {
+            margin: 10px;
+            padding: 20px;
+            @extend .background;
+            @extend .border;
+            min-height: 50px;
+
+            h4 {
+              color: #fff;
+            }
+
+            img {
+              width: 20px;
+            }
+
+            &_uno {
+              background-image: url('../src/images/cover-review_1.png');
+            }
+
+            &_dos {
+              position: relative;
+              background-image: url('../src/images/cover-review_2.png');
+
+              button {
+                @extend .border;
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 100%;
+                width: 50px;
+                background-color: var(--bg-btn);
+                color: #fff;
+                font-weight: 700;
+                font-size: 20px;
+                outline: none;
+                border: none;
+              }
+            }
+          }
+        }
+      }
+
+      .cards {
+        z-index: 4;
+
+        .add-card {
+          @extend .border;
+          @include grid(1fr);
+          justify-items: center;
+
+          border: 2px dashed var(--bg-main);
+          padding: 20px;
+
+          button {
+            @extend .border;
+            display: block;
+            padding: 10px 20px;
+            text-align: center;
+            outline: none;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--bg-btn);
+            font-weight: bold;
+          }
+
+          img {
+            width: 200px;
+            margin: 0 auto;
+          }
+        }
       }
 
       &-card {
         margin-top: -40%;
-        z-index: 4;
 
         @media screen and (max-width:768px) {
           margin-top: 0;

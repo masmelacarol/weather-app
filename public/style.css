@@ -22,7 +22,7 @@ p {
   font-size: 15px;
 }
 
-.background, .hero-container .main-visit_container, .hero-container .banner-container {
+.background, .hero-container .main-reviews .review-content .container, .hero-container .main-visit_container, .hero-container .banner-container {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -34,7 +34,7 @@ p {
   align-items: center;
 }
 
-.border, .hero-container .main-card .card-head figure, .hero-container .main-card .card-container, .hero-container .main-visit_container, .hero-container .main-forecast_content .card-temperature, .hero-container .main-forecast_content .card, .hero-container .banner-head, .hero-container .banner-container, .hero-container {
+.border, .hero-container .main-card .card-head figure, .hero-container .main-card .card-container, .hero-container .main .cards .add-card button, .hero-container .main .cards .add-card, .hero-container .main-reviews .review-content .container_dos button, .hero-container .main-reviews .review-content .container, .hero-container .main-visit_container, .hero-container .main-forecast_content .card-temperature, .hero-container .main-forecast_content .card, .hero-container .banner-head, .hero-container .banner-container, .hero-container {
   border-radius: 20px;
 }
 
@@ -179,11 +179,6 @@ i {
   gap: 10px;
   justify-items: center;
 }
-@media screen and (max-width: 600px) {
-  .hero-container .main-information {
-    grid-template-rows: repeat(3, minmax(200px, 1fr));
-  }
-}
 .hero-container .main h2 {
   font-weight: 400;
 }
@@ -283,9 +278,75 @@ i {
   background-color: var(--bg-main);
   padding: 8px;
 }
+.hero-container .main-reviews .review-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1fr, 1fr));
+  gap: 10px;
+  grid-template-rows: 1fr 2fr;
+}
+.hero-container .main-reviews .review-content:first-of-type:not(h4) {
+  margin-top: 20px;
+}
+.hero-container .main-reviews .review-content .container {
+  margin: 10px;
+  padding: 20px;
+  min-height: 50px;
+}
+.hero-container .main-reviews .review-content .container h4 {
+  color: #fff;
+}
+.hero-container .main-reviews .review-content .container img {
+  width: 20px;
+}
+.hero-container .main-reviews .review-content .container_uno {
+  background-image: url("../src/images/cover-review_1.png");
+}
+.hero-container .main-reviews .review-content .container_dos {
+  position: relative;
+  background-image: url("../src/images/cover-review_2.png");
+}
+.hero-container .main-reviews .review-content .container_dos button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50px;
+  background-color: var(--bg-btn);
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  outline: none;
+  border: none;
+}
+.hero-container .main .cards {
+  z-index: 4;
+}
+.hero-container .main .cards .add-card {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(1fr, 1fr));
+  gap: 10px;
+  justify-items: center;
+  border: 2px dashed var(--bg-main);
+  padding: 20px;
+}
+.hero-container .main .cards .add-card button {
+  display: block;
+  padding: 10px 20px;
+  text-align: center;
+  outline: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--bg-btn);
+  font-weight: bold;
+}
+.hero-container .main .cards .add-card img {
+  width: 200px;
+  margin: 0 auto;
+}
 .hero-container .main-card {
   margin-top: -40%;
-  z-index: 4;
 }
 @media screen and (max-width: 768px) {
   .hero-container .main-card {

@@ -19,13 +19,25 @@ img {
   height: 100%;
 }
 
+p {
+  font-size: 15px;
+}
+
+.background {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .flex {
   display: flex;
   align-items: center;
 }
 
-.grid {
+@mixin grid($min) {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min, 1fr));
+  gap: 10px;
 }
 
 .border {
@@ -36,16 +48,28 @@ i {
   font-size: 30px;
 }
 
-.temperature {
-  p {
-    font-size: 25px;
+@mixin temperature {
+  .temperature {
+    p {
+      font-size: 25px;
 
-    small {
-      margin-left: -5px;
-      margin-top: 3px;
+      small {
+        margin-left: -5px;
+        margin-top: 3px;
+      }
     }
   }
 }
+
+@mixin card-container {
+  @extend .border;
+  @include grid(200px);
+  grid-template-columns: 3fr 2fr;
+  border: 1px solid #d4d4d4;
+  box-shadow: 5px 4px 8px #8a8a8a;
+}
+
+/**/
 
 .hero {
   font-family: var(--font-family-main);
@@ -80,10 +104,8 @@ i {
 
       &-container {
         @extend .border;
+        @extend .background;
         background-image: url('../src/images/cover-bogota.png');
-        background-position: center center;
-        background-size: cover;
-        background-repeat: no-repeat;
         height: 100%;
         width: 100%;
         position: absolute;
@@ -96,17 +118,15 @@ i {
       &-head {
         @extend .border;
         padding: 4em;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(0, 0, 0, 0.9);
         height: 100%;
 
         h2 {
           @extend .flex;
           color: var(--bg-btn);
-          position: relative;
           font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
           font-size: 20px;
           z-index: 2;
-          font-weight: 600;
 
           i {
             color: var(--bg-btn);
@@ -124,6 +144,7 @@ i {
         .weather,
         .temperature {
           @extend .flex;
+          @include temperature();
           border-radius: 0 10px 10px 0;
           justify-content: center;
           width: 80px;
@@ -160,13 +181,19 @@ i {
     }
 
     .main {
-      @extend .grid;
+      @include grid(200px);
       grid-template-columns: 3fr 1fr;
       margin: 40px 0;
 
+      @media screen and (max-width:768px) {
+        grid-template-columns: 1fr;
+      }
+
       &-information {
-        @extend .grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        @include grid(200px);
+        grid-template-rows: 200px;
+        justify-items: center;
+
       }
 
       h2 {
@@ -182,6 +209,10 @@ i {
       &-reviews {
         h2 {
           margin-bottom: 30px;
+
+          @media screen and (max-width:900px) {
+            margin-bottom: 10px;
+          }
         }
       }
 
@@ -190,11 +221,7 @@ i {
           margin: 10px;
 
           .card {
-            @extend .grid;
-            @extend .border;
-            grid-template-columns: 3fr 2fr;
-            border: 1px solid #d4d4d4;
-            box-shadow: 5px 4px 8px #8a8a8a;
+            @include card-container;
 
             &-day {
               padding: 10px;
@@ -208,8 +235,9 @@ i {
             }
 
             &-temperature {
-              @extend .border;
+              @include temperature();
               @extend .flex;
+              @extend .border;
               background-color: var(--bg-btn);
               width: 95px;
               height: 80px;
@@ -229,14 +257,17 @@ i {
 
       &-visit {
         width: 200px;
-        height: 220px;
+        height: 100%;
+
+        @media (max-width:900px) and (min-width:768px) {
+          height: 70%;
+        }
 
         &_container {
           @extend .border;
+          @extend .background;
+          @extend .border;
           background-image: url('../src/images/cover-visit.png');
-          background-position: center center;
-          background-size: cover;
-          background-repeat: no-repeat;
           height: 100%;
           width: 100%;
           padding: 20px;
@@ -254,6 +285,9 @@ i {
       }
 
       &-reviews {
+        width: 100%;
+        height: 100%;
+
         .header-review {
           @extend .flex;
           justify-content: space-around;
@@ -286,12 +320,12 @@ i {
             width: 280px;
             box-shadow: 5px 4px 8px #8a8a8a;
             text-align: center;
+            margin: auto;
           }
 
           &-head,
           &-content {
-            @extend .grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            @include grid(80px);
             align-items: center;
             justify-items: center;
             justify-self: center;
@@ -324,6 +358,8 @@ i {
                 font-size: 30px;
               }
             }
+
+            @include temperature();
           }
 
           &-content {

@@ -102,10 +102,10 @@ i {
   font-size: 20px;
   z-index: 2;
 }
-.hero-container .banner-head h2 i {
-  color: var(--bg-btn);
-  margin-right: 5px;
-  font-size: 20px;
+.hero-container .banner-head h2 img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
 }
 .hero-container .banner-description {
   position: absolute;
@@ -261,8 +261,9 @@ i {
   font-size: 15px;
   color: #fff;
 }
-.hero-container .main-visit_container h4 i {
-  font-size: 20px;
+.hero-container .main-visit_container h4 img {
+  width: 20px;
+  height: 20px;
 }
 .hero-container .main-reviews {
   width: 100%;
@@ -282,11 +283,21 @@ i {
   background-color: var(--bg-main);
   padding: 8px;
 }
+.hero-container .main-card {
+  margin-top: -40%;
+  z-index: 4;
+}
+@media screen and (max-width: 768px) {
+  .hero-container .main-card {
+    margin-top: 0;
+  }
+}
 .hero-container .main-card .card-container {
   width: 280px;
   box-shadow: 5px 4px 8px #8a8a8a;
   text-align: center;
-  margin: auto;
+  margin: 20px auto;
+  background-color: #fff;
 }
 .hero-container .main-card .card-head, .hero-container .main-card .card-content {
   display: grid;
@@ -295,6 +306,10 @@ i {
   align-items: center;
   justify-items: center;
   justify-self: center;
+}
+.hero-container .main-card .card-head .temp small, .hero-container .main-card .card-content .temp small {
+  font-size: 12px;
+  vertical-align: super;
 }
 .hero-container .main-card .card-head p:not(.temp), .hero-container .main-card .card-content p:not(.temp) {
   font-size: 12px;
@@ -308,7 +323,7 @@ i {
 .hero-container .main-card .card-head figure {
   justify-content: center;
   background-color: var(--bg-main);
-  width: 95px;
+  width: 80px;
   height: 80px;
   color: #7d67f0;
 }

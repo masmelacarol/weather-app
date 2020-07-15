@@ -67,6 +67,7 @@ i {
   grid-template-columns: 3fr 2fr;
   border: 1px solid #d4d4d4;
   box-shadow: 5px 4px 8px #8a8a8a;
+
 }
 
 /**/
@@ -175,8 +176,12 @@ i {
           flex-direction: column;
           flex-grow: 1;
           z-index: 4;
-        }
 
+          img {
+            width: 30px;
+            height: 30px;
+          }
+        }
       }
     }
 
@@ -185,15 +190,17 @@ i {
       grid-template-columns: 3fr 1fr;
       margin: 40px 0;
 
-      @media screen and (max-width:768px) {
+      @media screen and (max-width: 768px) {
         grid-template-columns: 1fr;
       }
 
       &-information {
         @include grid(200px);
-        grid-template-rows: 200px;
         justify-items: center;
 
+        @media screen and (max-width: 600px) {
+          grid-template-rows: repeat(3, minmax(200px, 1fr));
+        }
       }
 
       h2 {
@@ -210,7 +217,7 @@ i {
         h2 {
           margin-bottom: 30px;
 
-          @media screen and (max-width:900px) {
+          @media screen and (max-width: 900px) {
             margin-bottom: 10px;
           }
         }
@@ -222,16 +229,21 @@ i {
 
           .card {
             @include card-container;
+            margin-top: 10px;
 
             &-day {
               padding: 10px;
               @extend .flex;
               justify-content: space-evenly;
 
+              img {
+                width: 50px;
+                height: 50px;
+              }
+
               h6 {
                 font-size: 15px;
               }
-
             }
 
             &-temperature {
@@ -257,9 +269,9 @@ i {
 
       &-visit {
         width: 200px;
-        height: 100%;
+        height: 200px;
 
-        @media (max-width:900px) and (min-width:768px) {
+        @media (max-width: 900px) {
           height: 70%;
         }
 
@@ -293,7 +305,6 @@ i {
           justify-content: space-around;
 
           &_avatars {
-
             figure {
               display: inline-block;
               width: 28px;
@@ -305,10 +316,8 @@ i {
               .more {
                 background-color: var(--bg-main);
                 padding: 8px;
-
               }
             }
-
           }
         }
       }
@@ -341,7 +350,6 @@ i {
                 display: block;
               }
             }
-
           }
 
           &-head {

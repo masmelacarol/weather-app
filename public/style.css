@@ -140,6 +140,10 @@ i {
   flex-grow: 1;
   z-index: 4;
 }
+.hero-container .banner-description .weather img {
+  width: 30px;
+  height: 30px;
+}
 .hero-container .main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -156,8 +160,12 @@ i {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 10px;
-  grid-template-rows: 200px;
   justify-items: center;
+}
+@media screen and (max-width: 600px) {
+  .hero-container .main-information {
+    grid-template-rows: repeat(3, minmax(200px, 1fr));
+  }
 }
 .hero-container .main h2 {
   font-weight: 400;
@@ -183,10 +191,15 @@ i {
   grid-template-columns: 3fr 2fr;
   border: 1px solid #d4d4d4;
   box-shadow: 5px 4px 8px #8a8a8a;
+  margin-top: 10px;
 }
 .hero-container .main-forecast_content .card-day {
   padding: 10px;
   justify-content: space-evenly;
+}
+.hero-container .main-forecast_content .card-day img {
+  width: 50px;
+  height: 50px;
 }
 .hero-container .main-forecast_content .card-day h6 {
   font-size: 15px;
@@ -213,9 +226,9 @@ i {
 }
 .hero-container .main-visit {
   width: 200px;
-  height: 100%;
+  height: 200px;
 }
-@media (max-width: 900px) and (min-width: 768px) {
+@media (max-width: 900px) {
   .hero-container .main-visit {
     height: 70%;
   }

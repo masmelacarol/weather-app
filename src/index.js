@@ -1,7 +1,7 @@
 const API_KEY = "17c94ac7d6eea2a004934ba9239628fb";
 
 const fetchData = async (city, argWeather, api_key) => {
-  const API = `http://api.openweathermap.org/data/2.5/${argWeather}?q=${city}&appid=${api_key}`;
+  const API = `https://api.openweathermap.org/data/2.5/${argWeather}?q=${city}&appid=${api_key}`;
   let response = await new Promise((resolve, reject) => {
     const xhttp = new XMLHttpRequest();
     xhttp.open('GET', API, true);
@@ -51,8 +51,6 @@ const showCardForecast = (forecast) => {
   let arrDates = [data[dayOne], data[dayTwo], data[dayThree]]
   console.log("showCardForecast -> arrDates", arrDates)
   arrDates.forEach(date => {
-
-
     elementCard.innerHTML +=
       `<div class="card">
         <div class="card-day">

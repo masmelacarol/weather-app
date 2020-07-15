@@ -78,6 +78,10 @@ i {
   background-color: var(--bg-main);
   height: 100%;
 
+  @media screen and (max-width:500px) {
+    padding: 5px;
+  }
+
   &-logo {
     @extend .flex;
     justify-content: flex-end;
@@ -96,6 +100,11 @@ i {
     margin: 20px 50px;
     background-color: #fff;
     @extend .border;
+
+    @media screen and (max-width:500px) {
+      padding: 5px;
+      margin: 0;
+    }
 
     .banner {
       margin: 10px auto;
@@ -141,6 +150,11 @@ i {
         position: absolute;
         top: 30%;
         left: -40px;
+
+        @media screen and (max-width:500px) {
+          top: 45%;
+          left: 0;
+        }
 
         .weather,
         .temperature {

@@ -49,6 +49,11 @@ i {
   background-color: var(--bg-main);
   height: 100%;
 }
+@media screen and (max-width: 500px) {
+  .hero {
+    padding: 5px;
+  }
+}
 .hero-logo {
   justify-content: flex-end;
   margin: auto;
@@ -63,6 +68,12 @@ i {
   padding: 40px;
   margin: 20px 50px;
   background-color: #fff;
+}
+@media screen and (max-width: 500px) {
+  .hero-container {
+    padding: 5px;
+    margin: 0;
+  }
 }
 .hero-container .banner {
   margin: 10px auto;
@@ -100,6 +111,12 @@ i {
   position: absolute;
   top: 30%;
   left: -40px;
+}
+@media screen and (max-width: 500px) {
+  .hero-container .banner-description {
+    top: 45%;
+    left: 0;
+  }
 }
 .hero-container .banner-description .weather,
 .hero-container .banner-description .temperature {

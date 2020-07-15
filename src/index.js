@@ -302,8 +302,12 @@ class WeatherData {
   }
 
 
+  /**
+   * Función de llamada de addEventListener del botón addLocations
+   * @param {Event} e // evento
+   * @memberof WeatherData
+   */
   async addLocation(e) {
-    console.log("WeatherData -> addLocation -> e", e)
     let target = e.target.classList.value;
     let city = prompt('What country do you want to consult?');
     let cityFormatted = city.charAt(0).toUpperCase() + city.slice(1);

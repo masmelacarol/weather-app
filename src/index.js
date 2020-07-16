@@ -35,7 +35,6 @@ class WeatherData {
     return Math.round(temperature - 273.15);
   }
 
-
   /**
    *Función para obterner los datos clima de los próximos tres días.
    * @memberof WeatherData
@@ -51,7 +50,7 @@ class WeatherData {
   }
 
   /**
-   * Función encargada de formatear la fecha donde le llega un número y 
+   * Función encargada de formatear la fecha donde le llega un número y
    * lo convierte en un dia de la semana   *
    * @param {*} date // dia de un fecha en valor númerico
    * @returns formattedDate // día de una fecha en String
@@ -83,17 +82,16 @@ class WeatherData {
         break;
 
       default:
-        'NA'
+        'NA';
         break;
     }
     return formattedDate;
   }
 
-
   /**
    * Función que hace el llamado asincrono al API dependiendo de los argumentos que reciba
    * @param {string} city //Trae la ciudad requerida
-   * @param {string} argWeather 
+   * @param {string} argWeather
    * argWeather: Se pueden utlizar dos: weather / forescast
    * weather: trae los datos del día actual -- forescast: trae el pronostico de lso días siguientes
    * @param {number} api_key valor que pide el API para realizar el llamado
@@ -116,7 +114,7 @@ class WeatherData {
   }
 
   /**
-   * Función encargada de obtener todos los datos que se utilizan en la aplicación para 
+   * Función encargada de obtener todos los datos que se utilizan en la aplicación para
    * ser mostrados luego
    * @param {object} data // Valores asincriconos del API
    * @returns weather // Retorna todos los datos obtenidos y generalizados del API
@@ -150,7 +148,7 @@ class WeatherData {
     const bannerHead = document.querySelector('.banner-head');
     const bannerDescription = document.querySelector('.banner-description');
     let main = this.getWeatherData(data);
-    bannerHead.innerHTML += `<h2><img src="../src/images/icon-location.png" alt="icon location" />${main.name}</h2>`
+    bannerHead.innerHTML += `<h2><img src="../src/images/icon-location.png" alt="icon location" />${main.name}</h2>`;
     bannerDescription.innerHTML += `
       <div class="weather">
         <img src="http://openweathermap.org/img/w/${main.icon}.png" />
@@ -163,44 +161,7 @@ class WeatherData {
   }
 
   /**
-   * Función encargada de mostrar los datos de clima en Paris en una ficha de la parte derecha
-   * @param {object} data // Valores asincriconos del API 
-   * @memberof WeatherData
-   */
-
-  showWeatherParis(data) {
-    const mainCard = document.querySelector('.main-card');
-    const weather = this.getWeatherData(data);
-    mainCard.innerHTML += `<div class="card-container">
-      <div class="card-head">
-        <figure>
-          <img src="http://openweathermap.org/img/w/${weather.icon}.png" />
-        </figure>
-        <div class="temperature">
-          <p class="temp">${weather.temperature} <small>°C</small> </p>
-        </div>
-        <div class="location">
-          <p class="city">${weather.name}
-            <small class="country">${weather.country}</small>
-          </p>
-        </div>
-      </div>
-      <div class="card-content">
-        <div class="humidity">
-          <p>Humidity: <span>${weather.humidity}%</span></p>
-        </div>
-        <div class="cardinal">
-          <p>${weather.cardinal.lat}° ${weather.cardinal.lon}°</p>
-        </div>
-        <div class="velocity">
-          <p>${weather.wind}km/h</p>
-        </div>
-      </div>
-    </div>`;
-  }
-
-  /**
-   * Función encargada de mostrar los datos de clima en Singapore en una ficha de la parte derecha
+   * Función encargada de mostrar los datos de clima de una ciudad en una ficha de la parte derecha
    * @param {object} data // Valores asincriconos del API
    * @memberof WeatherData
    */
@@ -266,10 +227,8 @@ class WeatherData {
     });
   }
 
-
-
   /**
-   * Funcíon encargada de llamar a la función @fetchData y enviar el datos a las respetivas 
+   * Funcíon encargada de llamar a la función @fetchData y enviar el datos a las respetivas
    * funciones que muestran los datos en el HTML
    * @memberof WeatherData
    */
@@ -282,14 +241,14 @@ class WeatherData {
 
     this.showWeatherBogota(weatherBogota);
     this.showCardForecastBogota(forecast);
-    this.showWeatherParis(weatherParis);
+    this.showWeatherGeneric(weatherParis);
     this.showWeatherGeneric(weatherSingapur);
   }
 
   /**
    * Función encargada de llamar a la función @fetchData y enviar el datos a las respetivas
    * funciones que muestran los datos en el HTML dependiendo la ciudad que se digite
-   * @param {*} city
+   * @param {string} city
    * @memberof WeatherData
    */
   async getLocation(city) {
@@ -301,7 +260,6 @@ class WeatherData {
     }
   }
 
-
   /**
    * Función de llamada de addEventListener del botón addLocations
    * @param {Event} e // evento
@@ -309,7 +267,7 @@ class WeatherData {
    */
   async addLocation(e) {
     let target = e.target.classList.value;
-    let city = prompt('What country do you want to consult?');
+    let city = prompt('What city do you want to consult?');
     let cityFormatted = city.charAt(0).toUpperCase() + city.slice(1);
     this.getLocation(cityFormatted);
   }
